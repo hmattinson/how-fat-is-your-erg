@@ -1,5 +1,5 @@
 body {
-    width: 100%;
+    width: calc(100% - 16px);
     background-image: url('water_boat.jpg');
     background-attachment: fixed;
     background-size: cover;
