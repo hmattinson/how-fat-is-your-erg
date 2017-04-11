@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<link rel="stylesheet" href="fatergo.css">
+
+<head>
+
+  <title>Fat Ergo?</title>
+
+</head>
+
+<body>
+
+  <h1 align="center" style="font-size: 10px;">How FAT is your Ergo?</h1>
+
+  <div id="formDiv">
+    <div class="form-style-5">
+      <form id="FatForm" >
+        <label for="text">Weight (kg):</label>
+        <input type="text" name="weight" required="true" id="weight">
+        <label for="text">Time:</label>
+          <input type="number" id="hours" name="hours" min="0" max="99" autocomplete=""placeholder="h" width=auto>
+          <span class="input_wrapper seperator v2">:</span>
+          <input type="number" id="mins" name="mins" min="0" max="59" placeholder="m" required="true">
+          <span class="input_wrapper seperator v2">:</span>
+          <input type="number" id="secs" name="secs" min="0" max="59" placeholder="s" required="true">
+        <label for="text">Distance (m):</label>
+        <input type="text" name="distance" id="distance" required="true">
+        <input type="submit" value="Calculate" />
+      </form>
+    </div>
+  </div>
+
+  <div id="footer">
+    <a href="About.html" ><p style="text-align: left;">About</p></a>
+  </div>
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+ 		<script src="jquery.fittext.js"></script>
+ 		<script type="text/javascript">
+ 			$("h1").fitText(1.2);
+      $("h3").fitText(2);
+
+
+      $("#FatForm").submit( function(e) {
+        var weight = parseInt( $("#weight").val() );
+        var hours = parseInt( $("#hours").val() );
+        var mins = parseInt( $("#mins").val() );
+        var secs = parseInt( $("#secs").val() );
+        var distance = parseInt( $("#distance").val() );
+
+        if (isNaN( hours )){
+          hours = 0;
+        }
+        if (isNaN( mins )){
+          mins = 0;
+        }
+        if (isNaN( secs )){
+          secs = 0;
+        }
+        if (isNaN( distance )){
+          distance = 0;
+        }
+        if (isNaN( weight )){
+          weight = 0;
+        }
+
+        var totalSecs = hours*3600 + (mins * 60) + secs;
+        var pace = totalSecs/distance; //seconds per meter
+        var pace500 = totalSecs/(distance/500); //seconds per 500 meters
+        var power = 2.8/(pace*pace*pace)
+        var powerWeight = power/weight;
+        var wf = Math.pow((weight*2.2 / 270),0.222);
+        var cTime = wf * totalSecs;
+        var cDistance = distance / wf;
+        var cPace500 = cTime/(distance/500);
+        var wfPower = power/wf;
+        var alpha = (power/wf)*(Math.pow(distance,0.217))
+
+        var sResult;
+        if (alpha>2200){
+          sResult = "FAT"
+        }
+        else {
+          sResult = "skinny..."
+        }
+
+        sPower = Math.round(power) + "W";
+        sPowerWeight = Math.round(powerWeight*100)/100 + "W/kg";
+        sPace500 = Math.floor(pace500/60) + ":" + Math.round(pace500%60);
+        sCTime = Math.floor(cTime/3600) + ":" + Math.floor(cTime/60)%60 + ":" + Math.round(cTime%60);
+        sCDistance = Math.round(cDistance) + "m";
+        sCPace500 = Math.floor(cPace500/60) + ":" + Math.round(cPace500%60);
+
+        oSPower = "<h3>Power: " + sPower + "</h3>";
+        oSPowerWeight = "<h3>Power/Weight: " + sPowerWeight + "</h3>";
+        oSPace500 = "<h3>Pace: " + sPace500 + "</h3>";
+        oSCTime = "<h3>Adjusted Time: " + sCTime + "</h3>";
+        oSCDistance = "<h3>Adjusted Distance: " + sCDistance + "</h3>";
+        oSCPace500 = "<h3>Adjusted Pace: " + sCPace500 + "</h3>";
+        oSresult = "<h3>" + sResult + "</h3>";
+
+        sOutput = "<div class='output'>" + oSPower + oSPowerWeight + oSPace500 + oSCTime + oSCDistance + oSCPace500 + oSresult +  "</div>";
+
+        $("#formDiv").html(sOutput);
+        //$("#footer").html("<div id="footer"><a href="About.html" ><p>About</p></a></div>");
+
+        e.preventDefault();
+
+      });
+
+ 			</script>
+
+
+</body>
+</html>
