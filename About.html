@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<link rel="stylesheet" href="fatergoabout.css">
+
+<head>
+
+  <title>About</title>
+
+</head>
+
+<body>
+
+  <a href = "fatergo.html"><h1 align="center" style="font-size: 10px;">How FAT is your Ergo?</h1></a>
+
+  <p style="font-weight: bold;">Formula taken from <a target="_blank" href = "http://www.concept2.co.uk/indoor-rowers/training/calculators/weight-adjustment-calculator">Concept website:</a></p></p>
+  <p>Power = 2.8/(pace*pace*pace)</p>
+  <p>where pace is time in seconds over distance in metres.</p>
+  <p>Weight Factor = (Weight in pounds / 270) to the power of 0.222</p>
+  <p>Corected Time = Weight Factor * Time</p>
+  <p>Corrected Distance = Distance / Weight Factor</p>
+  <br>
+  <p>From their <a target="_blank" href = "http://www.concept2.co.uk/indoor-rowers/training/calculators/weight-adjustment-calculator">website:</a></p>
+  <p>"Your weight-adjusted score will be a pretty good estimate of your potential speed in an eight. If all eight rowers have the same
+    adjusted 2k score, then that eight should be capable of rowing that speed for a 2k race on the water—given perfect conditions
+    and near perfect rowing effectiveness (nobody rows perfectly)."</p>
+  <br>
+  <p style="font-weight: bold;">Classifying FATNESS</p>
+  <p>I wanted a way to take into account weight,power and distance to create one metric that I could then test against a baseline metric. The problem
+    initially was that over shorter distance any rower will put out more power. To take this into account I made the metric:</p>
+  <p style="font-weight: bold;">&#945 = (Power/Weight Factor)*Distance^&#946</p>
+  <p>Where &#946 is 0.217. This was worked out by finding the value that would minimise the deviation &#945 for a variety of mens' records.
+    Deviation was still moderately high but when ording events by &#945 the order of the distance/time of the events seemed suitably random.</p>
+  <p>Next I simply set a threshold value for &#945</p>
+  <br>
+  <p>By Henry Mattinson</p>
+
+
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="jquery.fittext.js"></script>
+  <script type="text/javascript">
+    $("h1").fitText(1.2);
+    $("h3").fitText(2);
+  </script>
+
+
+</body>
+</html>
