@@ -1,2 +1,2 @@
-# hmattinson.github.io
-First try using github to host website projects
+# How FAT is your erg
+A website to establish if your erg is indeed fat
